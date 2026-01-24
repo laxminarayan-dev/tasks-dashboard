@@ -1,19 +1,35 @@
-import { Fragment, useState, useEffect } from "react";
-
-import Sidebar from "./Components/Sidebar";
-import taskData from "./store/taskData.js";
+import { Fragment, useState, useEffect, use } from "react";
 import { useLocation } from "react-router-dom";
-import Overlay from "./Components/Overlay.jsx";
-import MainContent from "./Components/MainContent.jsx";
+import Sidebar from "./Components/Sidebar";
+import Overlay from "./Components/Overlay";
+import MainContent from "./Components/MainContent";
+const backend_url = import.meta.env.VITE_BACKEND_URL;
+
+// import taskData from "./store/taskData";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState("html");
+  const [taskData, setTaskData] = useState({});
   const [breadcrumbLabel, setBreadcrumbLabel] = useState("HTML");
   const location = useLocation();
+
   const handleSidebarToggle = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const fetchTaskData = async () => {
+      try {
+        const response = await fetch(`${backend_url}/api/tasks`);
+        const data = await response.json();
+        setTaskData(data.data);
+      } catch (error) {
+        console.error("Error fetching task data:", error);
+      }
+    };
+    fetchTaskData();
+  }, []);
 
   useEffect(() => {
     const section = location.pathname.replace("/", "");
