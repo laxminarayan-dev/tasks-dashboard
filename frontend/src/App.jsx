@@ -1,10 +1,8 @@
 import { Fragment, useState, useEffect } from "react";
-import { CgMenuRightAlt } from "react-icons/cg";
-import { RxCross2 } from "react-icons/rx";
+
 import Sidebar from "./Components/Sidebar";
 import taskData from "./store/taskData.js";
 import { useLocation } from "react-router-dom";
-import CardGroup from "./Components/CardGroup.jsx";
 import Overlay from "./Components/Overlay.jsx";
 import MainContent from "./Components/MainContent.jsx";
 
