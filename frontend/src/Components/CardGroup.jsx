@@ -1,4 +1,6 @@
 import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { FaHtml5, FaCss3, FaJsSquare, FaReact } from "react-icons/fa";
+import { MdAdd } from "react-icons/md";
 
 const CardGroup = ({ taskData, currentSection }) => {
   return (
@@ -21,8 +23,27 @@ const CardGroup = ({ taskData, currentSection }) => {
                     {task.detail}
                   </p>
                 </div>
-                <span className="text-[10px] px-2 py-1 rounded-full bg-slate-50 text-slate-700 border border-slate-200 ml-2">
-                  {currentSection.toUpperCase()}
+                <span className="text-[10px] px-2 py-1 rounded-full bg-slate-50 text-slate-700 border border-slate-200 ml-2 flex items-center gap-1">
+                  {currentSection === "html" ? (
+                    <FaHtml5 size={18} />
+                  ) : currentSection === "html-css" ? (
+                    <>
+                      <FaHtml5 size={18} />
+                      <MdAdd size={14} />
+                      <FaCss3 size={18} />
+                    </>
+                  ) : currentSection === "html-css-js" ? (
+                    <>
+                      <FaHtml5 size={18} />
+                      <MdAdd size={14} />
+                      <FaCss3 size={18} />
+                      <MdAdd size={14} />
+                      <FaJsSquare size={18} />
+                    </>
+                  ) : (
+                    <FaReact size={18} />
+                  )}
+                  {/*  */}
                 </span>
               </div>
               <div className="relative flex gap-2 h-10">
