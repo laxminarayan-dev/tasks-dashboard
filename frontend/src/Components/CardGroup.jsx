@@ -5,7 +5,7 @@ import { MdAdd } from "react-icons/md";
 const CardGroup = ({ taskData = {}, currentSection }) => {
   return (
     <div
-      className={`grid-scroll grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-6 overflow-y-auto p-4 ${Object.keys(taskData).length > 0 && taskData[currentSection].length > 0 ? "max-h-[calc(100dvh-12rem)]" : "min-h-[calc(100dvh-12rem)]"} `}
+      className={`grid-scroll grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 4xl:grid-cols-4 gap-6 overflow-y-auto p-4 ${Object.keys(taskData).length > 0 && taskData[currentSection].length > 0 ? "max-h-[calc(100dvh-12rem)]" : "min-h-[calc(100dvh-12rem)]"} `}
     >
       {Object.keys(taskData).length > 0 &&
       taskData[currentSection].length > 0 ? (
