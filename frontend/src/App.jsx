@@ -21,6 +21,8 @@ function App() {
   useEffect(() => {
     const fetchTaskData = async () => {
       try {
+        console.log("backend url: ", backend_url);
+
         const response = await fetch(`${backend_url}/api/tasks`);
         const data = await response.json();
         setTaskData(data.data);
