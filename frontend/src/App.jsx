@@ -3,7 +3,6 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import { FiCode, FiLayers, FiCpu, FiZap } from "react-icons/fi";
 import Sidebar from "./Components/Sidebar";
-import { useLocation } from "react-router-dom";
 import "./scrollbar.css";
 
 function App() {
