@@ -1,17 +1,17 @@
-const expense = require('express');
-const app = expense();
+const express = require('express');
+const app = express();
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const taskData = require('./data/taskData');
-const { log } = require('console');
 
 app.use(cors());
-app.use(expense.json());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Get all tasks
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.get('/api/tasks', (req, res) => {
