@@ -39,6 +39,7 @@ app.post('/api/tasks', (req, res) => {
             detail: taskDetail,
             link: siteLink || null,
             code: codeLink || null,
+            technology: technology,
             createdAt: new Date().toISOString()
         };
 
