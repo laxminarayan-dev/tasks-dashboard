@@ -3,7 +3,7 @@ import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 import { useState } from "react";
 
-function Card({ task, editable = false, onEdit, onDelete, fetchTasks }) {
+function Card({ task, editable = false, fetchTasks }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
 
@@ -15,12 +15,16 @@ function Card({ task, editable = false, onEdit, onDelete, fetchTasks }) {
         technology: task.technology,
       };
 
-      const response = await fetch("./api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedTask),
+      const response = await fetch(`./api/tasks/${task.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: editedTask.title,
+          detail: editedTask.detail,
+          link: editedTask.link,
+          code: editedTask.code,
+          technology: task.technology
+        }),
       });
 
       if (!response.ok) {
@@ -29,9 +33,6 @@ function Card({ task, editable = false, onEdit, onDelete, fetchTasks }) {
 
       const data = await response.json();
 
-      if (onEdit) {
-        onEdit(updatedTask);
-      }
       setIsEditing(false);
       fetchTasks();
     } catch (error) {
@@ -47,21 +48,16 @@ function Card({ task, editable = false, onEdit, onDelete, fetchTasks }) {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch("./api/task/delete", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task),
+      const response = await fetch(`./api/tasks/${task.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ technology: task.technology }),
       });
 
       if (!response.ok) {
         throw new Error("Failed to delete task");
       }
 
-      if (onDelete) {
-        onDelete(task.id);
-      }
       fetchTasks();
     } catch (error) {
       console.error("Error deleting task:", error);

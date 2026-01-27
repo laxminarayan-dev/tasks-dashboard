@@ -22,7 +22,7 @@ app.get('/api/tasks', (req, res) => {
 // POST endpoint to add new task
 app.post('/api/tasks', (req, res) => {
     try {
-        const { taskTitle, taskDetail, siteLink, codeLink, technology } = req.body;
+        const { id, taskTitle, taskDetail, siteLink, codeLink, technology } = req.body;
 
         // Validate input
         if (!taskTitle || !taskDetail || !technology) {
@@ -35,7 +35,7 @@ app.post('/api/tasks', (req, res) => {
 
         // Create new task object
         const newTask = {
-            id: Date.now(),
+            id: id || Date.now(),
             title: taskTitle,
             detail: taskDetail,
             link: siteLink || null,
@@ -82,6 +82,61 @@ module.exports = taskData;
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+app.put('/api/tasks/:id', (req, res) => {
+    const { id } = req.params;
+    const { title, detail, link, code, technology } = req.body;
+
+    const taskDataPath = path.join(__dirname, './data/taskData.js');
+    const currentData = require('./data/taskData');
+
+    if (!currentData[technology]) {
+        return res.status(404).json({ error: 'Technology not found' });
+    }
+
+    const index = currentData[technology].findIndex(t => t.id == id);
+    if (index === -1) {
+        return res.status(404).json({ error: 'Task not found' });
+    }
+
+    currentData[technology][index] = {
+        ...currentData[technology][index],
+        title,
+        detail,
+        link,
+        code
+    };
+
+    fs.writeFileSync(
+        taskDataPath,
+        `const taskData = ${JSON.stringify(currentData, null, 4)};\n\nmodule.exports = taskData;`
+    );
+
+    delete require.cache[require.resolve('./data/taskData')];
+
+    res.json({ success: true });
+});
+
+app.delete('/api/tasks/:id', (req, res) => {
+    const { id } = req.params;
+    const { technology } = req.body;
+
+    const taskDataPath = path.join(__dirname, './data/taskData.js');
+    const currentData = require('./data/taskData');
+
+    currentData[technology] =
+        currentData[technology].filter(t => t.id != id);
+
+    fs.writeFileSync(
+        taskDataPath,
+        `const taskData = ${JSON.stringify(currentData, null, 4)};\n\nmodule.exports = taskData;`
+    );
+
+    delete require.cache[require.resolve('./data/taskData')];
+
+    res.json({ success: true });
+});
+
 
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"));
