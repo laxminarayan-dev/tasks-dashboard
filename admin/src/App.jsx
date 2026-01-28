@@ -7,11 +7,16 @@ import Tasks from "./pages/Tasks";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const [tasks, setTasks] = useState({});
-  const [currentPage, setCurrentPage] = useState("dashboard");
+  const [currentPage, setCurrentPage] = useState(
+    sessionStorage.getItem("currentPage") || "dashboard",
+  );
   const [displayData, setDisplayData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem("currentPage", currentPage);
+  }, [currentPage]);
 
   const fetchTasks = async () => {
     setLoading(true);
@@ -26,7 +31,9 @@ function App() {
     } catch (error) {
       console.error("Error fetching tasks:", error);
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 400);
     }
   };
 
@@ -84,7 +91,12 @@ function App() {
             <Main displayData={displayData} fetchTasks={fetchTasks} />
           )}
           {currentPage === "tasks" && (
-            <Tasks tasks={tasks} fetchTasks={fetchTasks} />
+            <Tasks
+              tasks={tasks}
+              fetchTasks={fetchTasks}
+              setCurrentPage={setCurrentPage}
+              loading={loading}
+            />
           )}
           {currentPage === "settings" && (
             <div className="p-6">

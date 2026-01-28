@@ -15,18 +15,16 @@ function Main({ displayData = [], fetchTasks }) {
 
         <div className="mt-8 flex flex-col gap-10">
           <Form fetchTasks={fetchTasks} />
-          <div>
-            <h1 className="text-xl font-bold">Recent Tasks</h1>
-            <div className="mt-4 grid-scroll grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-              {Object.keys(displayData).length > 0 ? (
-                Object.entries(displayData).map((task) => (
+          {Object.keys(displayData).length > 0 && (
+            <div>
+              <h1 className="text-xl font-bold">Recent Tasks</h1>
+              <div className="mt-4 grid-scroll grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                {Object.entries(displayData).map((task) => (
                   <Card key={task[0]} data={task} />
-                ))
-              ) : (
-                <p className="text-slate-600">No tasks available.</p>
-              )}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
