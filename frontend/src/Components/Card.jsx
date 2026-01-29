@@ -5,18 +5,18 @@ import { MdAdd } from "react-icons/md";
 function Card({ task, currentSection }) {
   return (
     <div
-      className={`group rounded-xl  bg-linear-to-br from-violet-50 via-violet-300 to-violet-50 shadow-sm hover:shadow-md transition-all duration-1000 ease-in-out overflow-hidden h-38`}
+      className={`group rounded-xl  bg-linear-to-br from-violet-50 via-violet-300 to-violet-50 shadow-sm hover:shadow-md transition-all duration-1000 ease-in-out overflow-hidden h-40`}
     >
       <div className={`p-5 h-[inherit]`}>
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
-            <p className="text-md font-semibold text-slate-900 line-clamp-1">
+            <p className="text-lg font-semibold text-slate-950 line-clamp-1">
               {task[1].title}
             </p>
-            <p className="text-xs font-semibold text-slate-600 mt-1 line-clamp-1">
+            <p className="text-sm font-semibold line-clamp-1 mt-1 text-slate-700">
               {task[1].detail}
             </p>
-            <p className="text-xs text-slate-600 mt-1 line-clamp-1">
+            <p className="text-xs text-slate-600 mt-1 line-clamp-1 font-serif font-bold">
               {new Date(task[1].createdAt)
                 .toLocaleDateString("en-GB", {
                   weekday: "short",
