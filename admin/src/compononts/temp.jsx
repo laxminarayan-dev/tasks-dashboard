@@ -43,6 +43,7 @@ function Card({ task }) {
         </div>
         <div className="relative flex gap-2 h-10">
           <button
+            aria-label="view-project"
             onClick={() => window.open(task.link || "#", "_blank")}
             className={`bg-white border border-slate-300 rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium text-slate-700 px-3 py-2 z-20`}
           >
@@ -50,6 +51,7 @@ function Card({ task }) {
             <span>View Project</span>
           </button>
           <button
+            aria-label="view-code"
             onClick={() => window.open(task.code || "#", "_blank")}
             className={`bg-slate-700 rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium text-white px-3 py-2 transition-colors z-20`}
           >

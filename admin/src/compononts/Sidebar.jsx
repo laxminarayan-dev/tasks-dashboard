@@ -4,7 +4,6 @@ import { IoSettings } from "react-icons/io5";
 import { useEffect } from "react";
 
 function Sidebar({ currentPage, setCurrentPage, setIsSidebarOpen }) {
-
   const links = [
     { name: "Dashboard", url: "/dashboard", icon: <MdDashboard /> },
     { name: "Tasks", url: "/tasks", icon: <FaTasks /> },
@@ -15,7 +14,7 @@ function Sidebar({ currentPage, setCurrentPage, setIsSidebarOpen }) {
     <div className="bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 px-4 py-8 h-screen w-52 flex flex-col gap-8 justify-start">
       <div className="">
         <h1 className="text-2xl text-indigo-50">Admin Panel</h1>
-        <h4 className="text-xs text-slate-400">CodeSquadZ's Task</h4>
+        <h2 className="text-xs text-slate-400">CodeSquadZ's Task</h2>
       </div>
       <hr className="border-slate-700/70" />
       <nav>
@@ -30,8 +29,8 @@ function Sidebar({ currentPage, setCurrentPage, setIsSidebarOpen }) {
               }}
             >
               <button
+                aria-label="sidebar-button"
                 className="flex justify-start items-center gap-2"
-
               >
                 {link.icon} {link.name}
               </button>

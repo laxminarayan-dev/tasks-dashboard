@@ -21,6 +21,7 @@ const MainContent = ({
           </p>
         </div>
         <button
+          aria-label="menu-btn"
           onClick={handleSidebarToggle}
           className={`px-3 py-2 rounded-md cursor-pointer text-slate-700 bg-white shadow-sm border border-slate-200 hover:bg-slate-50 ${isSidebarOpen ? "hidden" : "block"} md:hidden`}
         >

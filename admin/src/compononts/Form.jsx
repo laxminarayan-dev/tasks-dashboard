@@ -202,6 +202,7 @@ function Form({ fetchTasks }) {
               </div>
               <div className="relative shrink-0">
                 <button
+                  aria-label="technology"
                   type="button"
                   onClick={() => setIsOpen(!isOpen)}
                   className={`text-[10px] px-2 py-1 rounded-full bg-slate-50 text-slate-700 border flex items-center gap-1 hover:bg-slate-100 transition ${
@@ -217,6 +218,7 @@ function Form({ fetchTasks }) {
                   <div className="absolute top-0 right-0 mt-1 w-48 bg-white border border-slate-300 rounded-lg shadow-lg z-100">
                     {techOptions.map((option) => (
                       <button
+                        aria-label="tech-option-icon"
                         key={option.value}
                         type="button"
                         onClick={() => {
@@ -237,6 +239,7 @@ function Form({ fetchTasks }) {
                 className={`flex-1 flex flex-col  ${currentLinkInput == null || currentLinkInput === 0 ? "flex-1" : "flex-0 hidden"}`}
               >
                 <button
+                  aria-label="project-link"
                   onClick={() => {
                     setCurrentLinkInput((prev) => (prev === 0 ? null : 0));
                   }}
@@ -262,6 +265,7 @@ function Form({ fetchTasks }) {
                 className={` flex flex-col ${currentLinkInput == null || currentLinkInput === 1 ? "flex-1" : "flex-0 hidden"} `}
               >
                 <button
+                  aria-label="code-link"
                   onClick={() => {
                     setCurrentLinkInput((prev) => (prev === 1 ? null : 1));
                   }}
@@ -316,6 +320,7 @@ function Form({ fetchTasks }) {
 
         <div className="flex justify-end items-center pb-6 px-6 pt-2">
           <button
+            aria-label="add-task"
             type="submit"
             className="w-full px-4 py-3 bg-linear-to-r from-indigo-500 to-indigo-800/70 text-white rounded-xl hover:from-indigo-700 hover:to-indigo-800 flex items-center justify-center gap-2 font-medium transition-all shadow-sm hover:shadow-md"
           >

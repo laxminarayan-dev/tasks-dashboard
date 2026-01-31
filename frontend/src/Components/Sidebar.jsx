@@ -45,6 +45,7 @@ const Sidebar = ({ isSidebarOpen, currentSection, handleSidebarToggle }) => {
               return (
                 <li key={link.id}>
                   <button
+                    aria-label="sidebar-btn"
                     className={`group flex items-center gap-3 w-full rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200
                                         ${
                                           isActive

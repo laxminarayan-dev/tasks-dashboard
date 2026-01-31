@@ -64,7 +64,7 @@ function App() {
         onClick={toggleSidebar}
         className={`md:hidden absolute top-0 left-0 w-full h-screen bg-gray-900/50 z-10 ${isSidebarOpen ? "block" : "hidden"}`}
       >
-        <button className="absolute right-4 top-4">
+        <button aria-label="close-button" className="absolute right-4 top-4">
           <IoClose size={24} className="text-white" />
         </button>
       </div>
@@ -79,34 +79,37 @@ function App() {
             setCurrentPage={setCurrentPage}
           />
         </div>
-        {/* main content */}
-        <div className="z-0 flex-1 relative min-h-screen overflow-y-auto md:ml-52">
-          <button
-            className={`absolute top-4 right-4 text-2xl md:hidden ${isSidebarOpen ? "hidden" : "block"}`}
-            onClick={toggleSidebar}
-          >
-            <CgMenuRight />
-          </button>
-          {currentPage === "dashboard" && (
-            <Main displayData={displayData} fetchTasks={fetchTasks} />
-          )}
-          {currentPage === "tasks" && (
-            <Tasks
-              tasks={tasks}
-              fetchTasks={fetchTasks}
-              setCurrentPage={setCurrentPage}
-              loading={loading}
-            />
-          )}
-          {currentPage === "settings" && (
-            <div className="p-6">
-              <h1 className="text-2xl font-bold text-slate-900">Settings</h1>
-              <div className="mt-2">
-                <p className="text-slate-600">Manage your settings here.</p>
+        <main>
+          {/* main content */}
+          <div className="z-0 flex-1 relative min-h-screen overflow-y-auto md:ml-52">
+            <button
+              aria-label="menu-button"
+              className={`absolute top-4 right-4 text-2xl md:hidden ${isSidebarOpen ? "hidden" : "block"}`}
+              onClick={toggleSidebar}
+            >
+              <CgMenuRight />
+            </button>
+            {currentPage === "dashboard" && (
+              <Main displayData={displayData} fetchTasks={fetchTasks} />
+            )}
+            {currentPage === "tasks" && (
+              <Tasks
+                tasks={tasks}
+                fetchTasks={fetchTasks}
+                setCurrentPage={setCurrentPage}
+                loading={loading}
+              />
+            )}
+            {currentPage === "settings" && (
+              <div className="p-6">
+                <h1 className="text-2xl font-bold text-slate-900">Settings</h1>
+                <div className="mt-2">
+                  <p className="text-slate-600">Manage your settings here.</p>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        </main>
       </div>
     </>
   );

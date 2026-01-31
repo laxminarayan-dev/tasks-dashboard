@@ -163,12 +163,14 @@ function Card({ data, editable = false, fetchTasks }) {
           {editable && isEditing ? (
             <>
               <button
+                aria-label="save"
                 onClick={handleSave}
                 className={`bg-green-600 text-white rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium px-3 py-2 hover:bg-green-700 transition-colors z-20`}
               >
                 Save
               </button>
               <button
+                aria-label="cancel"
                 onClick={handleCancel}
                 className={`bg-slate-400 text-white rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium px-3 py-2 hover:bg-slate-500 transition-colors z-20`}
               >
@@ -178,6 +180,7 @@ function Card({ data, editable = false, fetchTasks }) {
           ) : editable ? (
             <>
               <button
+                aria-label="edit"
                 onClick={() => setIsEditing(true)}
                 className={`bg-blue-600 text-white rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium px-3 py-2 hover:bg-blue-700 transition-colors z-20`}
               >
@@ -185,6 +188,7 @@ function Card({ data, editable = false, fetchTasks }) {
                 <span>Edit</span>
               </button>
               <button
+                aria-label="remove"
                 onClick={handleDelete}
                 className={`bg-red-600 text-white rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium px-3 py-2 hover:bg-red-700 transition-colors z-20`}
               >
@@ -195,6 +199,7 @@ function Card({ data, editable = false, fetchTasks }) {
           ) : (
             <>
               <button
+                aria-label="view project"
                 onClick={() => window.open(task.siteLink || "#", "_blank")}
                 className={`bg-white border border-slate-300 rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium text-slate-700 px-3 py-2 z-20`}
               >
@@ -202,6 +207,7 @@ function Card({ data, editable = false, fetchTasks }) {
                 <span>View Project</span>
               </button>
               <button
+                aria-label="view code"
                 onClick={() => window.open(task.codeLink || "#", "_blank")}
                 className={`bg-slate-700 rounded-2xl flex-1 flex items-center justify-center gap-2 text-xs font-medium text-white px-3 py-2 transition-colors z-20`}
               >

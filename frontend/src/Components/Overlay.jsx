@@ -10,6 +10,7 @@ const Overlay = ({ isSidebarOpen, handleSidebarToggle }) => {
             onClick={handleSidebarToggle}
           ></div>
           <button
+            aria-label="close-btn"
             onClick={handleSidebarToggle}
             className="fixed z-100 md:hidden"
           >

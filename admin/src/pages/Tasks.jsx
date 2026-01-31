@@ -71,6 +71,7 @@ function Tasks({ tasks, fetchTasks, setCurrentPage, loading }) {
                   No Task Created Yet.
                 </h3>
                 <button
+                  aria-label="create-task-btn"
                   className="border border-violet-200 shadow-md cursor-pointer bg-linear-to-br from-violet-50 via-violet-300 to-violet-50 px-4 py-1 rounded-2xl m-4 text-violet-700"
                   onClick={() => {
                     setCurrentPage("dashboard");
